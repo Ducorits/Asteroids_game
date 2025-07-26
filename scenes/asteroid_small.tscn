@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://26tfa32r83vk"]
+
+[ext_resource type="PackedScene" uid="uid://b4v2acyskvdgi" path="res://scenes/wrap_around.tscn" id="1_2rqvc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sufu7"]
+
+[node name="AsteroidSmall" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sufu7")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(1.19209e-07, 1)
+scale = Vector2(0.78019, 0.858377)
+polygon = PackedVector2Array(10, -9, 13.0753, -2.69565, 12, 3, 9.31183, 9.17391, 3.31829, 10.4776, -8.84878, 7.3343, -13, -2, -8.96774, -10.0435, 1, -14)
+
+[node name="WrapAround" parent="." groups=["asteroid"] instance=ExtResource("1_2rqvc")]

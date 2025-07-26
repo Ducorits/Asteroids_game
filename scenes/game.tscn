@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://dufedci5ia6o7"]
+
+[ext_resource type="Script" uid="uid://dvoqfaukxca7u" path="res://scripts/game_manager.gd" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://de8uuctek0se0" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://d3cgfreioy08o" path="res://scenes/asteroid.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://cg5xr1y0qhif5" path="res://scenes/star.tscn" id="3_lbhrr"]
+[ext_resource type="Script" uid="uid://cg0pign2g8gqs" path="res://scripts/parallax_2d.gd" id="5_iywne"]
+
+[node name="Game" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_lnu2h")
+asteroid_scene = ExtResource("2_yqjtg")
+
+[node name="Player" parent="." instance=ExtResource("1_uwrxv")]
+unique_name_in_owner = true
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Background" type="Parallax2D" parent="."]
+script = ExtResource("5_iywne")
+star_scene = ExtResource("3_lbhrr")
