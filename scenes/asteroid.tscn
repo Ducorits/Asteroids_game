@@ -121,17 +121,12 @@ can_sleep = false
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_6mo6b")
+health = 5
 light_hit = ExtResource("2_0jovh")
 heavy_hit = ExtResource("4_pwrvu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0md28")
-
-[node name="Polygon2D" type="Polygon2D" parent="."]
-visible = false
-position = Vector2(-6.19888e-06, 2.38461)
-scale = Vector2(4, 3.88462)
-polygon = PackedVector2Array(10, -9, 12, 3, 4, 12, -10, 10, -13, -2, -7.95455, -10.8837, 1, -14)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, 1)

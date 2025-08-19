@@ -4,6 +4,8 @@ extends RigidBody2D
 @export var max_speed := 350.0
 @export_enum("large", "medium", "small") var size: String = "large"
 @export var base_speed: float = 100.0
+@export var health: int = 10
+var scale_modifier: float = 1.0
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 signal request_split(global_position: Vector2, current_size: String)
@@ -22,19 +24,21 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 				continue
 			hit_sound.pitch_scale = randf_range(0.95, 1.05)
 			hit_sound.stream = light_hit if impulse.length() < 40 else heavy_hit
-
 			hit_sound.play()
 
-
 func on_hit(damage: float) -> void:
-	animation_player.play("destroy")
-	emit_signal("request_split", global_position, size)
+	if health > 0:
+		health -= damage
+		hit_sound.play()
+	else:
+		animation_player.play("destroy")
+		Vfx.spawn("explosion", position, {"scale": scale_modifier})
+		emit_signal("request_split", global_position, size)
 
 func initialize():
 	var speed := base_speed
 	var collision_radius = $CollisionShape2D.shape.radius
 	var sprite_scale = $Sprite2D.scale
-	var scale_modifier = 1.0
 	match size:
 		"large":
 			scale_modifier = 1.0
@@ -44,12 +48,13 @@ func initialize():
 			scale_modifier = 0.75
 			speed *= 1.0
 			mass = 1.5
+			health *= scale_modifier
 		"small":
 			scale_modifier = 0.5
 			speed *= 1.0
 			mass = 0.75
+			health *= scale_modifier
 		
-	$Polygon2D.scale = $Polygon2D.scale * scale_modifier
 	$Sprite2D.scale = sprite_scale * scale_modifier
 	_resize_collision(collision_radius * scale_modifier)
 

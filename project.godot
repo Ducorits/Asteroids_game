@@ -15,6 +15,10 @@ run/main_scene="uid://dufedci5ia6o7"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Vfx="*res://scripts/VFX.gd"
+
 [input]
 
 move_up={
@@ -51,4 +55,4 @@ move_down={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-environment/defaults/default_clear_color=Color(0.129558, 0.129559, 0.129558, 1)
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
