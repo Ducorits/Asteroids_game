@@ -10,6 +10,8 @@ const TURN_SPEED = 5
 
 var can_fire = true
 var just_shot = false
+var mouse_enabled: bool = true
+var target_angle: float = 0
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	for i in range(state.get_contact_count()):
@@ -56,9 +58,18 @@ func _physics_process(delta: float) -> void:
 	move_dir = move_dir.normalized()
 	if linear_velocity.length() < 1000.0:
 		apply_impulse(move_dir * SPEED * delta)
-	var target_angle = (get_global_mouse_position() - global_position).angle() + PI / 2
-	rotation = lerp_angle(rotation, target_angle, delta * 10)  # Tune speed
-
+		
+	var mouse_pos = (get_global_mouse_position() - global_position)
+	if mouse_enabled:
+		target_angle = (mouse_pos).angle() + PI / 2
+	if Input.is_action_pressed("rotate_left"):
+		target_angle = target_angle - 5 * delta
+	if Input.is_action_pressed("rotate_right"):
+		target_angle = target_angle + 5 * delta
+	rotation = lerp_angle(rotation, target_angle, delta * 10)  # Turn speed
+		
+	if Input.is_action_pressed("toggle_mouse"):
+		mouse_enabled = !mouse_enabled
 	
 	if Input.is_action_pressed("shoot") and can_fire:
 		shoot_projectile()

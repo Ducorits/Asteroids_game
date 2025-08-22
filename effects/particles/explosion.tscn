@@ -60,7 +60,7 @@ _data = {
 }
 
 [node name="Explosion" type="CPUParticles2D"]
-z_index = 10
+z_index = -1
 z_as_relative = false
 emitting = false
 amount = 100
