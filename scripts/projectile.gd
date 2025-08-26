@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed: float = 600.0
+@export var speed: float = 100.0
 var direction: Vector2 = Vector2.ZERO
 var damage: float = 3.0
 signal spawn_particle(global_position: Vector2, name: String)
@@ -21,4 +21,5 @@ func _on_body_entered(body: Node) -> void:
 
 
 func _on_timer_timeout() -> void:
+	Vfx.spawn("projectile_hit", position, { "rotation": rotation + PI})
 	queue_free()

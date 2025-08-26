@@ -5,7 +5,7 @@ const SPEED = 100.0
 const TURN_SPEED = 5
 
 @export var projectile_scene: PackedScene
-@export var fire_cooldown: float = 0.2
+@export var fire_cooldown: float = 0.1
 @onready var hit_sound := $HitSound as AudioStreamPlayer2D
 
 var can_fire = true
