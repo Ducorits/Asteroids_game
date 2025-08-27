@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dufedci5ia6o7"]
+[gd_scene load_steps=9 format=3 uid="uid://dufedci5ia6o7"]
 
 [ext_resource type="Script" uid="uid://dvoqfaukxca7u" path="res://scripts/game_manager.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://de8uuctek0se0" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://bmjugnm2512bx" path="res://assets/sounds/breaking-news-in-2029-5994.mp3" id="3_u5sy4"]
 [ext_resource type="Script" uid="uid://cg0pign2g8gqs" path="res://scripts/parallax_2d.gd" id="5_iywne"]
 [ext_resource type="Script" uid="uid://diwvl42nlgiys" path="res://scripts/starfield.gd" id="5_p57ef"]
+[ext_resource type="Resource" uid="uid://yk2nf1e4upwb" path="res://data/weapons/op_gun.tres" id="8_gee14"]
 
 [node name="Game" type="Node2D"]
 
@@ -32,5 +33,6 @@ script = ExtResource("5_p57ef")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 unique_name_in_owner = true
+weapon_data = ExtResource("8_gee14")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

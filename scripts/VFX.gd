@@ -13,7 +13,7 @@ func _ready():
 	print(effects)
 
 func spawn(effect_name: String, position: Vector2, options: Dictionary = {}):
-	print("Spawning effect: ", effect_name, " at ", position)
+	#print("Spawning effect: ", effect_name, " at ", position)
 	if not effects.has(effect_name):
 		push_warning("Unknown effect: %s" % effect_name)
 		return

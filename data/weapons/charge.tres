@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://c4rh1ckivt6hh"]
+
+[ext_resource type="Script" uid="uid://bqw2dypllynxr" path="res://scripts/weapons/weapon_data.gd" id="1_i8tlh"]
+[ext_resource type="AudioStream" uid="uid://dakupcfb8mctl" path="res://assets/sounds/space-laser-3.wav" id="3_m2r7u"]
+
+[resource]
+script = ExtResource("1_i8tlh")
+name = "Charge Cannon"
+fire_rate = 1.0
+charge_time = 1.5
+projectile_name = "basic_bullet"
+sound = ExtResource("3_m2r7u")
+damage = 6.0
+speed = 1000.0
+metadata/_custom_type_script = "uid://bqw2dypllynxr"

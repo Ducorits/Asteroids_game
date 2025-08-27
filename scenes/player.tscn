@@ -1,8 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://de8uuctek0se0"]
+[gd_scene load_steps=15 format=3 uid="uid://de8uuctek0se0"]
 
 [ext_resource type="Script" uid="uid://bt675bmam21q1" path="res://scripts/player.gd" id="1_3vyb7"]
-[ext_resource type="PackedScene" uid="uid://b4v2acyskvdgi" path="res://scenes/wrap_around.tscn" id="2_g2els"]
-[ext_resource type="PackedScene" uid="uid://bfu0ffpngr1be" path="res://scenes/projectile.tscn" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://cktcwdq8cqxak" path="res://assets/textures/space_ship.png" id="4_dqkch"]
 [ext_resource type="AudioStream" uid="uid://dakupcfb8mctl" path="res://assets/sounds/space-laser-3.wav" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://cjtix8eug1d0r" path="res://assets/sounds/ship-collide.wav" id="6_tuyoq"]
@@ -90,7 +88,6 @@ gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_3vyb7")
-projectile_scene = ExtResource("2_qhqgy")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -2)
@@ -101,8 +98,6 @@ polygon = PackedVector2Array(0, -10, -10, 7, 10, 7)
 visible = false
 points = PackedVector2Array(0, -10, -10, 7, 10, 7, 0, -10)
 width = 1.0
-
-[node name="WrapAround" parent="." instance=ExtResource("2_g2els")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)

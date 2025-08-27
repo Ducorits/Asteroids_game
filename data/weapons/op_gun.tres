@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://yk2nf1e4upwb"]
+
+[ext_resource type="Script" uid="uid://bqw2dypllynxr" path="res://scripts/weapons/weapon_data.gd" id="1_sm14h"]
+[ext_resource type="AudioStream" uid="uid://dakupcfb8mctl" path="res://assets/sounds/space-laser-3.wav" id="2_hxuku"]
+
+[resource]
+script = ExtResource("1_sm14h")
+name = "Op Gun"
+fire_rate = 10.0
+charge_time = 0.0
+sound = ExtResource("2_hxuku")
+projectile_name = "basic_bullet"
+damage = 10.0
+speed = 1200.0
+metadata/_custom_type_script = "uid://bqw2dypllynxr"

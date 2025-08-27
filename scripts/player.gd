@@ -4,9 +4,8 @@ extends RigidBody2D
 const SPEED = 100.0
 const TURN_SPEED = 5
 
-@export var projectile_scene: PackedScene
-@export var fire_cooldown: float = 0.1
 @onready var hit_sound := $HitSound as AudioStreamPlayer2D
+@export var weapon_data: WeaponData
 
 var can_fire = true
 var just_shot = false
@@ -29,6 +28,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("shoot") and just_shot:
+		%ShootSFX.stream = weapon_data.sound
 		%ShootSFX.pitch_scale = randf_range(1.0, 1.1)
 		%ShootSFX.play()
 		just_shot = false
@@ -75,15 +75,9 @@ func _physics_process(delta: float) -> void:
 		shoot_projectile()
 		just_shot = true
 		can_fire = false
-		await get_tree().create_timer(fire_cooldown).timeout
+		await get_tree().create_timer(1 / weapon_data.fire_rate).timeout
 		can_fire = true
 
 func shoot_projectile():
-	var projectile = projectile_scene.instantiate()
-	get_parent().add_child(projectile)
-
-	# Spawn in front of the player
 	var forward = Vector2.UP.rotated(rotation)
-	projectile.global_position = global_position + forward * 20
-	projectile.rotation = rotation
-	projectile.direction = forward
+	ProjectileManager.spawn(weapon_data, global_position + forward * 20, {"rotation": rotation, "direction": forward})

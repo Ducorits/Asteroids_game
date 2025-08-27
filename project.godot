@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Vfx="*res://scripts/VFX.gd"
+ProjectileManager="*res://scripts/projectile_manager.gd"
 
 [input]
 
