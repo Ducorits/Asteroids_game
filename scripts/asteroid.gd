@@ -33,7 +33,7 @@ func on_hit(damage: float) -> void:
 	else:
 		animation_player.play("destroy")
 		Vfx.spawn("explosion", position, {"scale": scale_modifier})
-		Vfx.spawn("explosion_2waa", position, {"scale": scale_modifier})
+		Vfx.spawn("explosion_2", position, {"scale": scale_modifier})
 		emit_signal("request_split", global_position, size)
 
 func initialize():

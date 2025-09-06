@@ -12,7 +12,7 @@ func _ready():
 				projectiles[projectile_name] = load(projectiles_path + file_name)
 	print(projectiles)
 
-func spawn(weapon: , position: Vector2, options: Dictionary = {}):
+func spawn(weapon: WeaponData , position: Vector2, options: Dictionary = {}):
 	if not projectiles.has(weapon.projectile_name):
 		push_warning("Unknown projectile: %s" % weapon.projectile_name)
 		return
