@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://cvgj6yippkepu"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oaolr"]
+
+[sub_resource type="Gradient" id="Gradient_83pd0"]
+colors = PackedColorArray(0.756863, 0.65098, 1, 1, 0.109804, 0.0156863, 0.192157, 0.490196)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_afqsh"]
+gradient = SubResource("Gradient_83pd0")
+
+[sub_resource type="Curve" id="Curve_vi6kj"]
+_limits = [-2.24719, 200.0, 0.0, 1.0]
+_data = [Vector2(0, -2.24719), 0.0, 0.0, 0, 0, Vector2(1, 120.465), 158.488, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4jjjc"]
+curve = SubResource("Curve_vi6kj")
+
+[sub_resource type="Curve" id="Curve_1mwar"]
+_limits = [0.0, 42.6966, 0.0, 1.0]
+_data = [Vector2(0, 15.8313), 0.0, 59.7753, 0, 0, Vector2(0.308824, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6pvkx"]
+curve = SubResource("Curve_1mwar")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gj0h5"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(10, 10, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 10.0
+emission_ring_inner_radius = 10.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -10.0
+radial_accel_max = -2.23517e-06
+radial_accel_curve = SubResource("CurveTexture_4jjjc")
+tangential_accel_min = 10.0
+tangential_accel_max = 10.0
+tangential_accel_curve = SubResource("CurveTexture_6pvkx")
+scale_min = 6.0
+scale_max = 15.0
+color_ramp = SubResource("GradientTexture1D_afqsh")
+
+[node name="GravitySink" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_oaolr")
+amount = 100
+lifetime = 2.0
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_gj0h5")

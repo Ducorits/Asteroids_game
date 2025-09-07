@@ -20,10 +20,13 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		var collider := state.get_contact_collider_object(i)
 
 		if collider and collider.is_in_group("asteroid"):
-			if impulse.length() < 0.01:
+			var v1 = collider.linear_velocity
+			var v2 = linear_velocity
+			var relative_velocity = (v1 - v2).length()
+			if relative_velocity < 50:
 				continue
 			hit_sound.pitch_scale = randf_range(0.95, 1.05)
-			hit_sound.stream = light_hit if impulse.length() < 40 else heavy_hit
+			hit_sound.stream = light_hit if relative_velocity < 200 else heavy_hit
 			hit_sound.play()
 
 func on_hit(damage: float) -> void:
