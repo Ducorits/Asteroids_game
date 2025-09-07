@@ -1,7 +1,6 @@
 extends RigidBody2D
 
-
-const SPEED = 100.0
+const SPEED = 1000.0
 const TURN_SPEED = 5
 
 @onready var hit_sound := $HitSound as AudioStreamPlayer2D
@@ -11,6 +10,7 @@ var can_fire = true
 var just_shot = false
 var mouse_enabled: bool = true
 var target_angle: float = 0
+var previous_linear_velocity: Vector2
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	for i in range(state.get_contact_count()):
@@ -58,6 +58,7 @@ func _physics_process(delta: float) -> void:
 	move_dir = move_dir.normalized()
 	if linear_velocity.length() < 1000.0:
 		apply_impulse(move_dir * SPEED * delta)
+	previous_linear_velocity = linear_velocity
 		
 	var mouse_pos = (get_global_mouse_position() - global_position)
 	if mouse_enabled:

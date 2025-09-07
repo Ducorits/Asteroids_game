@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://de8uuctek0se0"]
+[gd_scene load_steps=16 format=3 uid="uid://de8uuctek0se0"]
 
 [ext_resource type="Script" uid="uid://bt675bmam21q1" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://cktcwdq8cqxak" path="res://assets/textures/space_ship.png" id="4_dqkch"]
 [ext_resource type="AudioStream" uid="uid://dakupcfb8mctl" path="res://assets/sounds/space-laser-3.wav" id="5_qlg0r"]
+[ext_resource type="PackedScene" uid="uid://b4v2acyskvdgi" path="res://scenes/wrap_around.tscn" id="5_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://cjtix8eug1d0r" path="res://assets/sounds/ship-collide.wav" id="6_tuyoq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qlg0r"]
@@ -82,7 +83,6 @@ color_ramp = SubResource("GradientTexture1D_smehm")
 
 [node name="Player" type="RigidBody2D"]
 collision_layer = 2
-mass = 0.1
 physics_material_override = SubResource("PhysicsMaterial_qlg0r")
 gravity_scale = 0.0
 contact_monitor = true
@@ -122,6 +122,8 @@ stream = ExtResource("6_tuyoq")
 volume_db = -15.0
 max_polyphony = 20
 bus = &"SFX"
+
+[node name="WrapAround" parent="." instance=ExtResource("5_tuyoq")]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(5.96046e-08, 30)
