@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dufedci5ia6o7"]
+[gd_scene load_steps=12 format=3 uid="uid://dufedci5ia6o7"]
 
 [ext_resource type="PackedScene" uid="uid://cvgj6yippkepu" path="res://effects/particles/gravity_sink.tscn" id="1_0tnpc"]
 [ext_resource type="Script" uid="uid://dvoqfaukxca7u" path="res://scripts/game_manager.gd" id="1_lnu2h"]
@@ -10,8 +10,11 @@
 [ext_resource type="Script" uid="uid://diwvl42nlgiys" path="res://scripts/starfield.gd" id="5_p57ef"]
 [ext_resource type="Resource" uid="uid://yk2nf1e4upwb" path="res://data/weapons/op_gun.tres" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://cclwxaml21e7o" path="res://scenes/gravity_well.tscn" id="10_vtaks"]
+[ext_resource type="PackedScene" uid="uid://ct8bhfrd0ixkv" path="res://src/terrain_generator/tile_generator.tscn" id="11_kvpfn"]
 
 [node name="Game" type="Node2D"]
+
+[node name="TileGenerator" parent="." instance=ExtResource("11_kvpfn")]
 
 [node name="GravitySink" parent="." instance=ExtResource("1_0tnpc")]
 position = Vector2(263, 153)

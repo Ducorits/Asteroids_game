@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://ct8bhfrd0ixkv"]
+
+[ext_resource type="Script" uid="uid://dhytghpaecyf5" path="res://src/terrain_generator/tile_generator.gd" id="1_ww4h3"]
+[ext_resource type="Texture2D" uid="uid://dpthq8x16dnc0" path="res://src/terrain_generator/generator_tilemap.png" id="2_hwpvu"]
+[ext_resource type="Script" uid="uid://cfrypfgh0a2pi" path="res://src/terrain_generator/ground.gd" id="3_j1867"]
+[ext_resource type="AudioStream" uid="uid://8m2655grp82v" path="res://assets/sounds/asteroid-hit-light.wav" id="4_0moe4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0hol4"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q6r6c"]
+resource_local_to_scene = true
+width = 1080
+height = 1080
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_0hol4")
+seamless = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hnfsc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kdubu"]
+texture = ExtResource("2_hwpvu")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/z_index = 1
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/z_index = 1
+3:2/0 = 0
+3:2/0/z_index = 1
+3:3/0 = 0
+3:3/0/z_index = 1
+5:0/0 = 0
+5:0/0/z_index = 1
+7:0/0 = 0
+7:0/0/z_index = 1
+7:1/0 = 0
+7:1/0/z_index = 1
+7:2/0 = 0
+7:2/0/z_index = 1
+7:3/0 = 0
+7:3/0/z_index = 1
+9:0/0 = 0
+9:0/0/z_index = 1
+9:1/0 = 0
+9:1/0/z_index = 1
+9:2/0 = 0
+9:2/0/z_index = 1
+9:3/0 = 0
+9:3/0/z_index = 1
+5:2/0 = 0
+5:2/0/z_index = 1
+5:3/0 = 0
+5:3/0/z_index = 1
+
+[sub_resource type="TileSet" id="TileSet_d21ai"]
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_hnfsc")
+sources/0 = SubResource("TileSetAtlasSource_kdubu")
+
+[node name="TileGenerator" type="Node2D" node_paths=PackedStringArray("noise_texture", "ground_tile_layer")]
+scale = Vector2(5.015, 5.015)
+script = ExtResource("1_ww4h3")
+noise_texture = NodePath("NoiseTexture")
+ground_tile_layer = NodePath("Ground")
+width = 100
+height = 100
+
+[node name="NoiseTexture" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("NoiseTexture2D_q6r6c")
+
+[node name="Ground" type="TileMapLayer" parent="." node_paths=PackedStringArray("sound_player")]
+position = Vector2(2, 0)
+tile_set = SubResource("TileSet_d21ai")
+use_kinematic_bodies = true
+script = ExtResource("3_j1867")
+sound_player = NodePath("../AudioStreamPlayer2D")
+hit_sound = ExtResource("4_0moe4")
+
+[node name="Decor" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_d21ai")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+max_polyphony = 50
